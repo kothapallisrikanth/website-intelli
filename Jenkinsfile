@@ -33,5 +33,3 @@ pipeline {
                 sh "docker build . -t ${image_name}:${env.BUILD_NUMBER}"
             }
         }
-    
-
