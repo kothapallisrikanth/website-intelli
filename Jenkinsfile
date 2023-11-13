@@ -9,16 +9,6 @@ pipeline {
 
     stages {
         
-            
-        stage('Hello') {
-            steps {
-                retry (3) {
-                    sh 'echo "helo-world"'
-                }
-            
-          
-            }
-        }
 
         stage('docker-verify') {
             steps {
@@ -33,4 +23,4 @@ pipeline {
                 sh "docker build . -t ${image_name}:${env.BUILD_NUMBER}"
             }
         }
-    }
+    }    
