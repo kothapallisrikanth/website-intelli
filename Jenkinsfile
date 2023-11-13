@@ -1,20 +1,28 @@
 pipeline {
     agent any
+    environment {
+        image_name = "intelli-image"
+        tag = "v2"
+    }
+    
+   
+
     stages {
-        stage('code copy') {
+        stage('Hello') {
             steps {
-                 git url: 'https://github.com/Naresh100893/website-intelli.git', branch: 'master'
+                retry (3) {
+                    sh 'echo "helo-world"'
+                }
+            
+            timeout(time: 40, unit: 'SECONDS') {
+                sh 'sleep 30'
+            }
             }
         }
-        stage('code-copy') {
+        stage('docker-build') {
             steps {
-                sh  'docker kill $(docker ps -q)'
-                sh  'docker build . -t naresh100893/intelli-image'
-            }
-        }
-        stage('deploy') {
-            steps {
-                sh 'docker run -itd -p 8090:80 naresh100893/intelli-image'
+                git url: 'https://github.com/Naresh100893/website-intelli.git', branch: 'master'
+                sh "docker build . -t ${image_name}:${env.BUILD_NUMBER}"
             }
         }
     }
