@@ -14,9 +14,7 @@ pipeline {
                     sh 'echo "helo-world"'
                 }
             
-            timeout(time: 40, unit: 'SECONDS') {
-                sh 'sleep 30'
-            }
+          
             }
         }
 
