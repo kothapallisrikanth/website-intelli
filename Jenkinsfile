@@ -19,6 +19,12 @@ pipeline {
             }
             }
         }
+
+        stage('docker-verify') {
+            steps {
+                sh 'docker --version'
+            }
+        }
         stage('docker-build') {
             steps {
                 git url: 'https://github.com/Naresh100893/website-intelli.git', branch: 'master'
