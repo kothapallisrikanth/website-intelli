@@ -56,6 +56,13 @@ pipeline {
         }
         
         stage ('dockerdeploy'){
+            input
+
+{
+
+message "Do you want to proceed for deployment ?"
+
+}
             steps{
                 sh 'echo "dockerdeploy"'
                 sh 'docker kill $(docker ps -q)'
