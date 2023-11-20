@@ -25,6 +25,7 @@ pipeline {
         stage('dockerbuild'){
             steps{
                 sh 'echo "dockerbuild"'
+                sh 'docker rmi $(docker images -qa)'
                 sh 'docker build . -t srikanth370/new-image:latest'
             }
         }
@@ -32,6 +33,7 @@ pipeline {
         stage ('dockerdeploy'){
             steps{
                 sh 'echo "dockerdeploy"'
+                sh 'docker kill $(docker ps -q)'
                 sh 'docker run -itd -p 8001:80 srikanth370/new-image:latest'
             }
             }
