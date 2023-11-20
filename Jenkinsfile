@@ -29,7 +29,7 @@ pipeline {
         stage('dockerbuild'){
             steps{
                 sh 'echo "dockerbuild"'
-                sh 'docker build . -t ${image_name}:${env.BUILD_NUMBER}'
+                sh "docker build . -t ${image_name}:${env.BUILD_NUMBER}"
             }
         }
         
@@ -37,7 +37,7 @@ pipeline {
             steps{
                 sh 'echo "dockerdeploy"'
                 sh 'docker kill $(docker ps -q)'
-                sh 'docker run -itd -p 8001:80 ${image_name}:${env.BUILD_NUMBER}'
+                sh "docker run -itd -p 8001:80 ${image_name}:${env.BUILD_NUMBER}"
             }
             }
         }
