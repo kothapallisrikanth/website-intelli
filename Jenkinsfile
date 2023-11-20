@@ -7,6 +7,7 @@ pipeline {
     
     options {
         timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '1'))
     }
     
     
@@ -37,8 +38,6 @@ pipeline {
         }
         
         
-        stage('paralleltest'){
-        parallel{
         stage('dockerbuild'){
             steps{
                 sh 'echo "dockerbuild"'
@@ -52,7 +51,5 @@ pipeline {
                 sh "docker run -itd -p 8001:80 ${image_name}:${env.BUILD_NUMBER}"
             }
             }
-        }
-        }
         }
     }
