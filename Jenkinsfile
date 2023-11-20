@@ -13,7 +13,6 @@ pipeline {
     stages{
         stage('parallelcheck'){
         parallel {
-        }
         stage('codecopy'){
             steps{
                 sh 'echo "codecopy"'
