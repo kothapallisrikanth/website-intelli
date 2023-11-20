@@ -32,7 +32,6 @@ pipeline {
         stage ('dockerdeploy'){
             steps{
                 sh 'echo "dockerdeploy"'
-                sh 'docker kill $(docker ps -q)'
                 sh 'docker run -itd -p 8001:80 srikanth370/new-image:latest'
             }
             }
