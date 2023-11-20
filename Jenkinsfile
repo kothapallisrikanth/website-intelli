@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    
+    environment {
+        image_name="nov-image"
+        
+    }
     stages{
         stage('codecopy'){
             steps{
@@ -26,7 +31,7 @@ pipeline {
             steps{
                 sh 'echo "dockerbuild"'
                 sh 'docker rmi $(docker images -qa)'
-                sh 'docker build . -t srikanth370/new-image:latest'
+                sh 'docker build . -t ${image_name}:${env.BUILD_NUMBER}'
             }
         }
         
@@ -34,7 +39,7 @@ pipeline {
             steps{
                 sh 'echo "dockerdeploy"'
                 sh 'docker kill $(docker ps -q)'
-                sh 'docker run -itd -p 8001:80 srikanth370/new-image:latest'
+                sh 'docker run -itd -p 8001:80 ${image_name}:${env.BUILD_NUMBER}'
             }
             }
         }
