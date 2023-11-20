@@ -2,8 +2,7 @@ pipeline {
     agent any
     
     environment {
-        image_name="nov-image"
-        
+        image_name = "nov-image"
     }
     stages{
         stage('codecopy'){
