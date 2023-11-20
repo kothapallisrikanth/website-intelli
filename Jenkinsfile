@@ -40,6 +40,15 @@ pipeline {
         
         
         stage('dockerbuild'){
+            when {
+
+           expression {     
+
+                  return env.GIT_BRANCH == "origin/test"   
+
+                               }
+
+       }
             steps{
                 sh 'echo "dockerbuild"'
                 sh "docker build . -t ${image_name}:${env.BUILD_NUMBER}"
