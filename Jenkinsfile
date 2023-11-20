@@ -11,6 +11,9 @@ pipeline {
     
     
     stages{
+        stage('parallelcheck'){
+        parallel {
+        }
         stage('codecopy'){
             steps{
                 sh 'echo "codecopy"'
@@ -24,6 +27,8 @@ pipeline {
                 sh  'git --version'
             }
         }
+        }
+    }
         
         stage('dockerverify'){
             steps{
@@ -42,7 +47,6 @@ pipeline {
         stage ('dockerdeploy'){
             steps{
                 sh 'echo "dockerdeploy"'
-                sh 'docker kill $(docker ps -q)'
                 sh "docker run -itd -p 8001:80 ${image_name}:${env.BUILD_NUMBER}"
             }
             }
