@@ -25,7 +25,6 @@ pipeline {
         stage('dockerbuild'){
             steps{
                 sh 'echo "dockerbuild"'
-                ##sh 'docker rmi $(docker images -qa)'
                 sh 'docker build . -t srikanth370/new-image:latest'
             }
         }
