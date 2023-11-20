@@ -4,6 +4,12 @@ pipeline {
     environment {
         image_name = "nov-image"
     }
+    
+    options {
+        timestamps()
+    }
+    
+    
     stages{
         stage('codecopy'){
             steps{
