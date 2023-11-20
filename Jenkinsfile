@@ -44,7 +44,7 @@ pipeline {
 
            expression {     
 
-                  return env.GIT_BRANCH == "origin/test"   
+                  return env.GIT_BRANCH == "origin/master"   
 
                                }
 
