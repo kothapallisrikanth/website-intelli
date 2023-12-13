@@ -65,7 +65,6 @@ message "Do you want to proceed for deployment ?"
 }
             steps{
                 sh 'echo "dockerdeploy"'
-                sh 'docker kill $(docker ps -q)'
                 sh "docker run -itd -p 8001:80 ${image_name}:${env.BUILD_NUMBER}"
             }
             }
